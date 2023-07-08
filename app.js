@@ -1,23 +1,56 @@
-let taxRate = 1.23;
 const vm = Vue.createApp({
   data() {
     return {
-      price: 4,
-      items: 0,
+      menuItems: [
+        {
+          name: "training",
+          label: "Capacitación",
+          children: [
+            {
+              name: "programs",
+              label: "Programas",
+              children: [
+                {
+                  name: "programsManage",
+                  label: "Gestión de programas",
+                  chidren: [
+                    {
+                      name: "allPrograms",
+                      label: "Todos los programas",
+                    },
+                  ],
+                },
+              ],
+            },
+            {
+              name: "courses",
+              label: "Cursos",
+              children: [
+                {
+                  name: "coursesManage",
+                  label: "Gestión de Cursos",
+                  chidren: [
+                    {
+                      name: "allCourses",
+                      label: "Todos los cursos",
+                    },
+                    {
+                      name: "newCourse",
+                      label: "Nuevo curso",
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
     };
   },
   methods: {},
-  computed: {
-    tqxRate() {
-      console.log("taxrate");
-      return taxRate;
-    },
-    includingVat() {
-      console.log("including VAT");
-      return (this.price * taxRate).toFixed(2);
-    },
-    total() {
-      return (this.includingVat * this.items).toFixed(2);
-    },
-  },
-}).mount("#app");
+  computed: {},
+})
+  .component("menu-item", {
+    template: "#menu-item-template",
+  })
+  .mount("#app");
